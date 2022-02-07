@@ -8,9 +8,10 @@ package jp.co.sample.domain;
  */
 public class Administrator {
 	//コンストラクタ
-	Administrator(){
+	public Administrator(){
 	}
-	Administrator(Integer id, String name, String mailAddress, String password) {
+	
+	public Administrator(Integer id, String name, String mailAddress, String password) {
 		super();
 		this.id = id;
 		this.name = name;
