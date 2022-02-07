@@ -1,16 +1,17 @@
 package jp.co.sample.domain;
 
 /**
- * 管理者情報を表すドメイン
+ * 管理者情報を表すドメイン。
  * 
  * @author yunosuke
  *
  */
 public class Administrator {
 	//コンストラクタ
-	Administrator(){
+	public Administrator(){
 	}
-	Administrator(Integer id, String name, String mailAddress, String password) {
+	
+	public Administrator(Integer id, String name, String mailAddress, String password) {
 		super();
 		this.id = id;
 		this.name = name;
