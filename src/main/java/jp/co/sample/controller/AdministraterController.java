@@ -13,4 +13,9 @@ public class AdministraterController {
 	public InsertAdministratorForm setUpInsertAdministrator() {
 		return new InsertAdministratorForm();
 	}
+	
+	@RequestMapping("/toInsert")
+	public String toInsert() {
+		return "administrator/insert";
+	}
 }
