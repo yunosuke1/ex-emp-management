@@ -49,5 +49,22 @@ public class EmployeeController {
 		return "employee/detail";
 	}
 	
+	/**
+	 * 全従業員のリストを取得してリクエストスコープに格納
+	 * 
+	 * @param model
+	 * @return リスト表示画面
+	 */
+	@RequestMapping("/update")
+	public String update(String id,String dependentsCount) {
+		System.out.println(id);
+		System.out.println(dependentsCount);
+		Employee employee = service.showDetail(Integer.parseInt(id));
+		employee.setDependentsCount(Integer.parseInt(dependentsCount));
+		service.update(employee);
+		
+		return "redirect:/employee/showList";
+	}
+	
 	
 }
