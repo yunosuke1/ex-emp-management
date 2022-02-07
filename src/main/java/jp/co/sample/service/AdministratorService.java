@@ -21,4 +21,12 @@ public class AdministratorService {
 	public void insert(Administrator administrator) {
 		repository.Insert(administrator);
 	}
+	
+	/**
+	 * @param admin ログイン情報
+	 * @return 管理者情報
+	 */
+	public Administrator login(String mailAddress,String password) {
+		return repository.findByMailAddressAndPassword(mailAddress, password);
+	}
 }

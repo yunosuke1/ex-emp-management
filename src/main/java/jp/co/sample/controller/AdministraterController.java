@@ -1,8 +1,11 @@
 package jp.co.sample.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,6 +26,9 @@ public class AdministraterController {
 	@Autowired
 	private AdministratorService service;
 	
+	@Autowired
+	private HttpSession session;
+	
 	@ModelAttribute
 	public InsertAdministratorForm setUpInsertAdministrator() {
 		return new InsertAdministratorForm();
@@ -31,6 +37,32 @@ public class AdministraterController {
 	@ModelAttribute
 	public LoginForm setUpLoginForm() {
 		return new LoginForm();
+	}
+	
+	/**ログイン画面に遷移
+	 * @return ログイン画面
+	 */
+	@RequestMapping("/")
+	public String toLogin() {
+		return "administrator/login";
+	}
+	
+	/**ログイン処理
+	 * @return ログイン画面or従業員情報一覧ページ
+	 */
+	@RequestMapping("/login")
+	public String login(LoginForm form,Model model) {
+		Administrator admin = service.login(form.getMailAddress(), form.getPassword());
+		
+		//ログイン失敗
+		if(admin==null) {
+			model.addAttribute("noAdmin","メールアドレスまたはパスワードが不正です");
+			return "administrator/login";
+		}
+		
+		//ログイン成功
+		session.setAttribute("adminName", admin.getName());
+		return "foward:/employee/showList";
 	}
 	
 	/**
@@ -44,7 +76,7 @@ public class AdministraterController {
 	}
 	
 	/**
-	 * ユーザ登録をしてログイン画面に遷移
+	 * ユーザ登録
 	 * @param form ユーザ情報
 	 * @return ログイン画面
 	 */
@@ -57,11 +89,5 @@ public class AdministraterController {
 		return "administrator/login";
 	}
 	
-	/**ログイン画面に遷移
-	 * @return ログイン画面
-	 */
-	@RequestMapping("/")
-	public String toLogin() {
-		return "administrator/login";
-	}
+	
 }
