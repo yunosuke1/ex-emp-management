@@ -62,7 +62,7 @@ public class AdministraterController {
 		
 		//ログイン成功
 		session.setAttribute("adminName", admin.getName());
-		return "foward:/employee/showList";
+		return "forward:/employee/showList";
 	}
 	
 	/**
@@ -89,5 +89,15 @@ public class AdministraterController {
 		return "administrator/login";
 	}
 	
+	/**
+	 * ログアウト
+	 * 
+	 * @return ログイン画面
+	 */
+	@RequestMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "administrator/login";
+	}
 	
 }
