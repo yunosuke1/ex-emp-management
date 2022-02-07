@@ -15,8 +15,6 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeRepository repository;
 	
-	
-	
 	/**
 	 * 従業員の情報を全て取得
 	 * 
@@ -24,5 +22,15 @@ public class EmployeeService {
 	 */
 	public List<Employee> showList(){
 		return repository.findAll();
+	}
+	
+	/**
+	 * idから従業員情報を検索
+	 * 
+	 * @param id
+	 * @return 検索した従業員情報
+	 */
+	public Employee showDetail(Integer id) {
+		return repository.load(id);
 	}
 }
