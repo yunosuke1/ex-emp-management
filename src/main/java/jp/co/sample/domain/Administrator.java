@@ -1,5 +1,11 @@
 package jp.co.sample.domain;
 
+/**
+ * 管理者情報を表すドメイン
+ * 
+ * @author yunosuke
+ *
+ */
 public class Administrator {
 	//コンストラクタ
 	Administrator(){
@@ -12,13 +18,14 @@ public class Administrator {
 		this.password = password;
 	}
 	
-	//ID
+	
+	/** id */
 	private Integer id;
-	//名前
+	/** 名前 */
 	private String name;
-	//メールアドス
+	/** メールアドレス */
 	private String mailAddress;
-	//パスワード
+	/** パスワード */
 	private String password;
 	@Override
 	public String toString() {
