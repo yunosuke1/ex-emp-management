@@ -29,4 +29,8 @@ public class AdministratorService {
 	public Administrator login(String mailAddress,String password) {
 		return repository.findByMailAddressAndPassword(mailAddress, password);
 	}
+	
+	public Administrator findByMailAdress(String mailAdress) {
+		return repository.findByMailAddress(mailAdress);
+	}
 }
