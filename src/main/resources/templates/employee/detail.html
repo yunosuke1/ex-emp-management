@@ -107,15 +107,21 @@
 							      メールアドレス
 							    </th>
 							    <td>
-							      <span th:text="*{mailAddress}"></span>
+							    	<label class="error-messages">
+										メールアドレスを入力してください
+									</label>
+							    	<input type="text" name="mailAddress" id="mailAddress" class="form-control" th:field="*{mailAddress}">
 							    </td>
 							  </tr>
 							  <tr>
 							    <th nowrap>
-							      郵便番号
+							      	郵便番号
 							    </th>
 							    <td>
-							      <span th:text="*{zipCode}"></span>
+							    	<label class="error-messages">
+										郵便番号を入力してください
+									</label>
+							    	<input type="text" name="zipCode" id="zipCode" class="form-control" th:field="*{zipCode}">
 							    </td>
 							  </tr>
 							  <tr>
@@ -123,7 +129,10 @@
 							      住所
 							    </th>
 							    <td>
-							      <span th:text="*{address}"></span>
+							    	<label class="error-messages">
+										住所を入力してください
+									</label>
+							    	<input type="text" name="address" id="address" class="form-control" th:field="*{address}">
 							    </td>
 							  </tr>
 							  <tr>
@@ -131,7 +140,10 @@
 							      電話番号
 							    </th>
 							    <td>
-							      <span th:text="*{telephone}"></span>
+							    	<label class="error-messages">
+										電話番号を入力してください
+									</label>
+							    	<input type="text" name="telephone" id="telephone" class="form-control" th:field="*{telephone}">
 							    </td>
 							  </tr>
 							  <tr>
@@ -139,7 +151,10 @@
 							      給料
 							    </th>
 							    <td>
-							      <span th:text="*{salary}"></span>
+							    	<label class="error-messages">
+										給料を入力してください
+									</label>
+							    	<input type="text" name="salary" id="salary" class="form-control" th:field="*{salary}">
 							    </td>
 							  </tr>
 							  <tr>
@@ -147,7 +162,10 @@
 							      特性
 							    </th>
 							    <td>
-							      <span th:text="*{characteristics}"></span>
+							    	<label class="error-messages">
+											特性を入力してください
+									</label>
+							    	<input type="text" name="characteristics" id="characteristics" class="form-control" th:field="*{characteristics}">
 							    </td>
 							  </tr>
 							  <tr>
