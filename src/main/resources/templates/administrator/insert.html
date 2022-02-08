@@ -58,6 +58,7 @@
 										<label  class="error-messages" th:errors="*{mailAddress}">
 											メールアドレスを入力してください
 										</label>
+										<label  class="error-messages" th:if="${Duplicate}!=null" th:text="${Duplicate}"></label>
 										<input type="text" name="mailAddress" id="mailAddress" class="form-control" placeholder="yamada@mail.com" th:field="*{mailAddress}">
 									</div>
 								</div>
