@@ -25,6 +25,17 @@ public class EmployeeService {
 	}
 	
 	/**
+	 * 指定されたページの従業員情報を取得
+	 * 
+	 * @param page　ページ
+	 * @param dispNum　1ページの表示数
+	 * @return　従業員情報
+	 */
+	public List<Employee> showPageList(int page, int dispNum){
+		return repository.findBypage(page, dispNum);
+	}
+	
+	/**
 	 * idから従業員情報を検索
 	 * 
 	 * @param id
