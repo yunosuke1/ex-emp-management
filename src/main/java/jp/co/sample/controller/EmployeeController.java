@@ -2,6 +2,8 @@ package jp.co.sample.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,21 +20,29 @@ import jp.co.sample.service.EmployeeService;
 @RequestMapping("/employee")
 public class EmployeeController {
 	@Autowired
-	EmployeeService service;
+	private EmployeeService service;
+	
+	@Autowired
+	private HttpSession session;
 	
 	@ModelAttribute
 	public UpdateEmployeeForm setUpEmployeeForm() {
 		return new UpdateEmployeeForm();
 	}
 	
+	
 	/**
-	 * 全従業員のリストを取得してリクエストスコープに格納
+	 * 指定されたページの従業員のリストを取得してリクエストスコープに格納
 	 * 
 	 * @param model
-	 * @return リスト表示画面
+	 * @param page
+	 * @return
 	 */
 	@RequestMapping("/showList")
 	public String showList(Model model,@RequestParam(required = false) String page) {
+		if(session.getAttribute("adminName")==null) {
+			return "forward:/logout";
+		}
 		int dispNum = 10;
 		if(page==null) {
 			page="1";
@@ -67,6 +77,9 @@ public class EmployeeController {
 	 */
 	@RequestMapping("/showDetail")
 	public String showDetail(Integer id,Model model) {
+		if(session.getAttribute("adminName")==null) {
+			return "forward:/logout";
+		}
 		//従業員データ取得
 		Employee employee = service.showDetail(id);
 		model.addAttribute("employee",employee);
@@ -82,6 +95,9 @@ public class EmployeeController {
 	 */
 	@RequestMapping("/update")
 	public String update(UpdateEmployeeForm form) {
+		if(session.getAttribute("adminName")==null) {
+			return "forward:/logout";
+		}
 		//idから従業員を検索
 		Employee employee = service.showDetail(Integer.parseInt(form.getId()));
 		
